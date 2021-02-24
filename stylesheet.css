@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+#newItem {
+  margin: 20px;
+}
+
+#inputBox,
+#btnAddItem {
+  padding: 1.5%;
+}
+
+#inputBox {
+  border-radius: 13px 0 0 13px;
+}
+
+#btnAddItem {
+  border-radius: 0 13px 13px 0;
+}
+
+.itemContent,
+.itemControls {
+  display: inline-block;
+}
+
+#toDoList {
+  margin: 30px auto;
+  width: 90%;
+  text-align: center;
+}
