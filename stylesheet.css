@@ -1,24 +1,74 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+}
+
+#toDoList {
+  margin: 30px auto;
+  width: 75%;
+  text-align: center;
+}
+
+#error {
+  background-color: rgb(253, 200, 200);
+  border: 1px solid crimson;
+  border-radius: 7px;
+  color: rgb(163, 22, 50);
+  margin: 30px;
+  padding: 10px;
+  display: none;
 }
 
 #newItem {
-  margin: 20px;
+  margin: 20px auto;
 }
 
 #inputBox,
 #btnAddItem {
+  border: 1px solid mediumseagreen;
   padding: 1.5%;
 }
 
 #inputBox {
-  border-radius: 13px 0 0 13px;
+  border-radius: 7px 0 0 7px;
+  width: 80%;
+}
+
+.btn {
+  transition: 0.3s;
+}
+
+.btn:hover {
+  color: black;
 }
 
 #btnAddItem {
-  border-radius: 0 13px 13px 0;
+  border-radius: 0 7px 7px 0;
+}
+#btnAddItem:hover {
+  background-color: mediumseagreen;
+}
+
+#btnClearItems {
+  border: 1px solid crimson;
+  border-radius: 7px;
+  display: block;
+  margin: 50px auto;
+  padding: 1.5%;
+}
+#btnClearItems:hover {
+  background-color: crimson;
+}
+
+#itemList {
+  margin: 30px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  max-width: 900px;
 }
 
 .itemContent,
@@ -26,8 +76,18 @@
   display: inline-block;
 }
 
-#toDoList {
-  margin: 30px auto;
-  width: 90%;
-  text-align: center;
+.fa {
+  margin: 5px;
+}
+
+.fa-check-circle-o {
+  color: mediumseagreen;
+}
+
+.fa-pencil-square-o {
+  color: dodgerblue;
+}
+
+.fa-window-close-o {
+  color: crimson;
 }
