@@ -5,12 +5,7 @@ const btnAddItem = document.querySelector("#btnAddItem");
 const itemListEl = document.querySelector("#itemList");
 const btnClearItems = document.querySelector("#btnClearItems");
 const errorMessage = document.querySelector("#error");
-const itemContent = document.querySelector(".itemContent");
 const itemEl = document.querySelector(".item");
-
-const doneIcon = document.querySelector(".fa-check-circle-o");
-const editIcon = document.querySelector(".fa-pencil-square-o");
-const deleteIcon = document.querySelector(".fa-window-close-o");
 
 let itemList = [];
 
@@ -23,12 +18,15 @@ function removeAllChildNodes(parent) {
   // }
 }
 
-function displayErrorMessage() {
+function displayFeedbackMessage(text) {
+  errorMessage.textContent = text;
+
   errorMessage.style.display = "block";
   setTimeout(() => (errorMessage.style.display = "none"), 1300);
 }
 
 itemListEl.addEventListener("click", function (e) {
+  const itemContent = document.querySelector(".itemContent");
   // completing task
   if (e.target.matches(".fa-check-circle-o")) {
     e.target.closest(".item").children[0].classList.toggle("done");
@@ -38,8 +36,26 @@ itemListEl.addEventListener("click", function (e) {
   }
 
   // editing task
+  if (e.target.matches(".fa-pencil-square-o")) {
+    inputBox.value = e.target.closest(".item").children[0].textContent;
+    e.target.closest(".item").remove();
+
+    itemList = itemList.filter(
+      (item) => item !== e.target.closest(".item").children[0].textContent
+    );
+  }
 
   // deleting task
+  if (e.target.matches(".fa-window-close-o")) {
+    e.target.closest(".item").remove();
+
+    //removing from itemList
+    itemList = itemList.filter(
+      (item) => item !== e.target.closest(".item").children[0].textContent
+    );
+
+    displayFeedbackMessage("Item Removed");
+  }
 });
 
 function newItem(itemName) {
@@ -63,13 +79,18 @@ function newItem(itemName) {
 
 document.addEventListener("keypress", function (e) {
   const itemName = inputBox.value;
-  if (e.key === "Enter") newItem(itemName);
+
+  if (e.key === "Enter") {
+    if (!itemName) return displayFeedbackMessage("Please Enter Valid Value");
+    newItem(itemName);
+    inputBox.value = "";
+  }
 });
 
 btnAddItem.addEventListener("click", function () {
   const itemName = inputBox.value;
 
-  if (!itemName) return displayErrorMessage();
+  if (!itemName) return displayFeedbackMessage("Please Enter Valid Value");
 
   newItem(itemName);
 
@@ -84,4 +105,6 @@ btnClearItems.addEventListener("click", function () {
 
   // alternative
   // itemListEl.innerHTML = "";
+
+  displayFeedbackMessage("All Item Removed");
 });
