@@ -38,6 +38,11 @@
   transition: 0.3s;
 }
 
+.btn,
+.fa {
+  cursor: pointer;
+}
+
 .btn:hover {
   color: black;
 }
@@ -90,4 +95,9 @@
 
 .fa-window-close-o {
   color: crimson;
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: 30%;
 }
