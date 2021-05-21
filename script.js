@@ -77,24 +77,21 @@ function newItem(itemName) {
   );
 }
 
-document.addEventListener("keypress", function (e) {
+function checkIfValidAndUpdateList() {
   const itemName = inputBox.value;
+  if (!itemName) return displayFeedbackMessage("Please Enter Valid Value");
+  newItem(itemName);
+  inputBox.value = "";
+}
 
+document.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
-    if (!itemName) return displayFeedbackMessage("Please Enter Valid Value");
-    newItem(itemName);
-    inputBox.value = "";
+    checkIfValidAndUpdateList();
   }
 });
 
 btnAddItem.addEventListener("click", function () {
-  const itemName = inputBox.value;
-
-  if (!itemName) return displayFeedbackMessage("Please Enter Valid Value");
-
-  newItem(itemName);
-
-  inputBox.value = "";
+  checkIfValidAndUpdateList();
 });
 
 btnClearItems.addEventListener("click", function () {
@@ -106,5 +103,5 @@ btnClearItems.addEventListener("click", function () {
   // alternative
   // itemListEl.innerHTML = "";
 
-  displayFeedbackMessage("All Item Removed");
+  displayFeedbackMessage("All Items Removed");
 });
